@@ -1,0 +1,34 @@
+{
+  "name": "@qavajs/env",
+  "version": "0.1.0",
+  "description": "Loads environment variables from a .env and encrypted .env.enc file into process.env",
+  "scripts": {
+    "build": "tsc",
+    "encrypt": "node lib/cli.js encrypt 'Nobody is gonna know'",
+    "decrypt": "node lib/cli.js decrypt 'Nobody is gonna know'",
+    "test": "npx vitest --config ./test/vitest.config.ts"
+  },
+  "types": "index.d.ts",
+  "authors": [
+    "Alexandr Galichenko",
+    "Alexandr Legchilov"
+  ],
+  "bin": {
+    "qavajs-env": "lib/cli.js"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "commander": "^12.1.0",
+    "dotenv": "^16.4.5"
+  },
+  "devDependencies": {
+    "@types/node": "^22.7.5",
+    "@vitest/ui": "^2.1.3",
+    "typescript": "^5.6.3",
+    "vitest": "^2.1.3"
+  }
+}
