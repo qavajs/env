@@ -1,5 +1,6 @@
 import {decryptAndWrite, encryptAndWrite} from "./crypt";
-const {Command} = require('commander');
+import {Command} from 'commander';
+
 const program = new Command();
 
 program
