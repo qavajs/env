@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import {writeFile, readFile} from "node:fs/promises";
+import {writeFileSync, readFileSync} from "node:fs";
 
 const ALGORITHM = 'aes256';
 const SALT = 'salt';
@@ -14,22 +14,21 @@ const KEY_LENGTH = 32;
  * @param options - An object containing the input file path and the password for encryption.
  * @param options.inputFilePath - The path to the input file to be encrypted. Defaults to '.env' if not provided.
  * @param options.password - The password used to generate the encryption key.
- * @returns A promise that resolves when the encryption and writing process is complete.
  * @throws Will throw an error if reading the input file or writing the output file fails.
  * @example
  * ```typescript
  * await encryptAndWrite({ inputFilePath: 'config.env', password: 'mySecretPassword' });
  * ```
  */
-async function encryptAndWrite(options: { inputFilePath?: string, password: string }): Promise<void> {
+function encryptAndWrite(options: { inputFilePath?: string, password: string }): void {
   const inputFilePath = options.inputFilePath ?? '.env';
   const outputFilePath = inputFilePath + ENC_EXTENSION;
   const key = crypto.scryptSync(options.password, SALT, KEY_LENGTH);
   const iv = crypto.randomBytes(IV_LENGTH);
   const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
-  const input = await readFile(inputFilePath);
+  const input = readFileSync(inputFilePath);
   const encrypted = Buffer.concat([cipher.update(input), cipher.final()]);
-  await writeFile(outputFilePath, Buffer.concat([iv, encrypted]));
+  writeFileSync(outputFilePath, Buffer.concat([iv, encrypted]));
   console.log(`The Environment file "${inputFilePath}" has been encrypted to "${outputFilePath}".`);
   console.log(`Make sure to delete "${inputFilePath}" file for production use.`);
 }
@@ -40,7 +39,7 @@ async function encryptAndWrite(options: { inputFilePath?: string, password: stri
  * @param options - An object containing the input file path and the password for decryption.
  * @param options.inputFilePath - The path to the encrypted input file to be decrypted.
  * @param options.password - The password used to generate the decryption key.
- * @returns A promise that resolves to a Buffer containing the decrypted data.
+ * @returns A Buffer containing the decrypted data.
  * @throws Will throw an error if reading the input file or the decryption process fails.
  * @example
  * ```typescript
@@ -48,8 +47,8 @@ async function encryptAndWrite(options: { inputFilePath?: string, password: stri
  * console.log(decryptedData.toString());
  * ```
  */
-async function decrypt(options: { inputFilePath: string, password: string }): Promise<Buffer> {
-  const input = await readFile(options.inputFilePath);
+function decrypt(options: { inputFilePath: string, password: string }): Buffer {
+  const input = readFileSync(options.inputFilePath);
   const iv = input.subarray(ZERO, IV_LENGTH);
   const encryptedText = input.subarray(IV_LENGTH);
   const key = crypto.scryptSync(options.password, SALT, KEY_LENGTH);
@@ -71,10 +70,10 @@ async function decrypt(options: { inputFilePath: string, password: string }): Pr
  * // The content of the encrypted environment file "config.env.enc" has been decrypted to "decrypted_config.env".
  * ```
  */
-async function decryptAndWrite(options: { inputFilePath: string, password: string }) {
+function decryptAndWrite(options: { inputFilePath: string, password: string }): void {
   const outputFilePath = `decrypted_${options.inputFilePath.replace('.enc', '')}`;
-  const decrypted = await decrypt(options);
-  await writeFile(outputFilePath, decrypted);
+  const decrypted = decrypt(options);
+  writeFileSync(outputFilePath, decrypted);
   console.log(`The content of the encrypted environment file "${options.inputFilePath}" has been decrypted to "${outputFilePath}".`);
 }
 

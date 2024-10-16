@@ -14,7 +14,6 @@ export type ConfigOptions = {
  * @param options.envConfigPath - The path to a `.env` file to be loaded.
  * @param options.encryptedConfigPath - The path to an encrypted configuration file to be decrypted and loaded.
  * @param options.password - The password used to decrypt the encrypted configuration file. If not provided, it defaults to the value of the `QAVAJS_ENV_PASSWORD` environment variable.
- * @returns A promise that resolves when the configuration loading process is complete.
  * @throws Will throw an error if reading the input file, the decryption process, or loading the environment variables fails.
  * @example
  * ```typescript
@@ -28,11 +27,11 @@ export type ConfigOptions = {
  * await loadConfig({ encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword' });
  * ```
  */
-export async function loadConfig(options?: ConfigOptions) {
+export function loadConfig(options?: ConfigOptions) {
   if (!options) dotenv.config();
   if (options?.envConfigPath) dotenv.config({path: options.envConfigPath});
   if (options?.encryptedConfigPath) {
-    const decryptedBuffer = await decrypt({
+    const decryptedBuffer = decrypt({
       password: options?.password || process.env.QAVAJS_ENV_PASSWORD as string,
       inputFilePath: options.encryptedConfigPath
     });
