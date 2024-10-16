@@ -6,7 +6,7 @@
     "build": "tsc",
     "encrypt": "node lib/cli.js encrypt 'Nobody is gonna know'",
     "decrypt": "node lib/cli.js decrypt 'Nobody is gonna know'",
-    "test": "npx vitest --reporter=junit --outputFile=./report/junit-report.xml"
+    "test": "npx vitest --reporter=junit --reporter=verbose --outputFile=./report/junit-report.xml"
   },
   "types": "index.d.ts",
   "authors": [

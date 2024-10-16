@@ -24,3 +24,4 @@ jobs:
         if: success() || failure() # always run even if the previous step fails
         with:
           report_paths: './report/junit-report.xml'
+          fail_on_failure: true
