@@ -7,19 +7,19 @@ As early as possible in your application, import and call `qavajs-env/loadConfig
 To upload variables only from .env file:
 ```typescript
 // Load configuration from the default .env file
-await loadConfig();
+loadConfig();
 
 // Load configuration from a specified *.env file
-await loadConfig({envConfigPath: 'path/to/local.env'});
+loadConfig({envConfigPath: 'path/to/local.env'});
 
 // Load configuration from a default .env.enc encrypted file
-await loadConfig({password: 'mySecretPassword'});
+loadConfig({password: 'mySecretPassword'});
 
 // Load configuration from a specified *.env.enc encrypted file
-await loadConfig({encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword'});
+loadConfig({encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword'});
 
 // Load configuration from both *.env and *.env.enc files
-await loadConfig({
+loadConfig({
     envConfigPath: 'path/to/local.env',
     encryptedConfigPath: 'path/to/local.env.enc',
     password: 'mySecretPassword'

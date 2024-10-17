@@ -17,7 +17,7 @@ const KEY_LENGTH = 32;
  * @throws Will throw an error if reading the input file or writing the output file fails.
  * @example
  * ```typescript
- * await encryptAndWrite({ inputFilePath: 'config.env', password: 'mySecretPassword' });
+ * encryptAndWrite({ inputFilePath: 'config.env', password: 'mySecretPassword' });
  * ```
  */
 function encryptAndWrite(options: { inputFilePath?: string, password: string }): void {
@@ -43,7 +43,7 @@ function encryptAndWrite(options: { inputFilePath?: string, password: string }):
  * @throws Will throw an error if reading the input file or the decryption process fails.
  * @example
  * ```typescript
- * const decryptedData = await decrypt({ inputFilePath: 'config.env.enc', password: 'mySecretPassword' });
+ * const decryptedData = decrypt({ inputFilePath: 'config.env.enc', password: 'mySecretPassword' });
  * console.log(decryptedData.toString());
  * ```
  */
@@ -66,7 +66,7 @@ function decrypt(options: { inputFilePath: string, password: string }): Buffer {
  * @throws Will throw an error if reading the input file, the decryption process, or writing the output file fails.
  * @example
  * ```typescript
- * await decryptAndWrite({ inputFilePath: 'config.env.enc', password: 'mySecretPassword' });
+ * decryptAndWrite({ inputFilePath: 'config.env.enc', password: 'mySecretPassword' });
  * // The content of the encrypted environment file "config.env.enc" has been decrypted to "config_decrypted.env".
  * ```
  */

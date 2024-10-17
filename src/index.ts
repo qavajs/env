@@ -18,13 +18,13 @@ export type ConfigOptions = {
  * @example
  * ```typescript
  * // Load configuration from the default .env file
- * await loadConfig();
+ * loadConfig();
  *
  * // Load configuration from a specified .env file
- * await loadConfig({ envConfigPath: 'path/to/.env' });
+ * loadConfig({ envConfigPath: 'path/to/.env' });
  *
  * // Load configuration from an encrypted file
- * await loadConfig({ encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword' });
+ * loadConfig({ encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword' });
  * ```
  */
 export function loadConfig(options?: ConfigOptions) {
