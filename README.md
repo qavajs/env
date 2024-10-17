@@ -32,7 +32,7 @@ This command will generate .env.enc it the project root folder.
 
 To encrypt an env file with specific name run the next:
 ````shell
-qavajs-env encrypt 'mySecretPassword' -f 'pth/to/my/named.env'
+qavajs-env encrypt 'mySecretPassword' -f 'path/to/my/named.env'
 ````
 The file will be encrypted and saved into the directory.
 
@@ -43,5 +43,5 @@ qavajs-env encrypt 'mySecretPassword'
 
 To decrypt an `env.enc` file from a specific directory run the next command:
 ````shell
-qavajs-env encrypt 'mySecretPassword' -f pth/to/my/named.env.enc
+qavajs-env encrypt 'mySecretPassword' -f 'path/to/my/named.env.enc'
 ````

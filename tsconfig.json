@@ -2,9 +2,6 @@
   "include": [
     "src/**/*.ts"
   ],
-  "exclude": [
-    "test/**/*.spec.ts"
-  ],
   "compilerOptions": {
     "target": "es2017",
     "module": "node16",
