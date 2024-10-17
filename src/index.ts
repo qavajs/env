@@ -3,7 +3,7 @@ import process from "process";
 import dotenv from "dotenv";
 
 export type ConfigOptions = {
-  password?: string, envConfigPath?: string, encryptedConfigPath?: string
+    password?: string, envConfigPath?: string, encryptedConfigPath?: string
 }
 
 /**
@@ -28,13 +28,13 @@ export type ConfigOptions = {
  * ```
  */
 export function loadConfig(options?: ConfigOptions) {
-  if (!options) dotenv.config();
-  if (options?.envConfigPath) dotenv.config({path: options.envConfigPath});
-  if (options?.encryptedConfigPath) {
-    const decryptedBuffer = decrypt({
-      password: options?.password || process.env.QAVAJS_ENV_PASSWORD as string,
-      inputFilePath: options.encryptedConfigPath
-    });
-    Object.assign(process.env, dotenv.parse(decryptedBuffer));
-  }
+    if (!options) dotenv.config();
+    if (options?.envConfigPath) dotenv.config({path: options.envConfigPath});
+    if (options?.encryptedConfigPath) {
+        const decryptedBuffer = decrypt({
+            password: options?.password || process.env.QAVAJS_ENV_PASSWORD as string,
+            inputFilePath: options.encryptedConfigPath
+        });
+        Object.assign(process.env, dotenv.parse(decryptedBuffer));
+    }
 }

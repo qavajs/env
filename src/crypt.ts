@@ -21,16 +21,16 @@ const KEY_LENGTH = 32;
  * ```
  */
 function encryptAndWrite(options: { inputFilePath?: string, password: string }): void {
-  const inputFilePath = options.inputFilePath ?? '.env';
-  const outputFilePath = inputFilePath + ENC_EXTENSION;
-  const key = crypto.scryptSync(options.password, SALT, KEY_LENGTH);
-  const iv = crypto.randomBytes(IV_LENGTH);
-  const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
-  const input = readFileSync(inputFilePath);
-  const encrypted = Buffer.concat([cipher.update(input), cipher.final()]);
-  writeFileSync(outputFilePath, Buffer.concat([iv, encrypted]));
-  console.log(`The Environment file "${inputFilePath}" has been encrypted to "${outputFilePath}".`);
-  console.log(`Make sure to delete "${inputFilePath}" file for production use.`);
+    const inputFilePath = options.inputFilePath ?? '.env';
+    const outputFilePath = inputFilePath + ENC_EXTENSION;
+    const key = crypto.scryptSync(options.password, SALT, KEY_LENGTH);
+    const iv = crypto.randomBytes(IV_LENGTH);
+    const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
+    const input = readFileSync(inputFilePath);
+    const encrypted = Buffer.concat([cipher.update(input), cipher.final()]);
+    writeFileSync(outputFilePath, Buffer.concat([iv, encrypted]));
+    console.log(`The Environment file "${inputFilePath}" has been encrypted to "${outputFilePath}".`);
+    console.log(`Make sure to delete "${inputFilePath}" file for production use.`);
 }
 
 /**
@@ -48,12 +48,12 @@ function encryptAndWrite(options: { inputFilePath?: string, password: string }):
  * ```
  */
 function decrypt(options: { inputFilePath: string, password: string }): Buffer {
-  const input = readFileSync(options.inputFilePath);
-  const iv = input.subarray(ZERO, IV_LENGTH);
-  const encryptedText = input.subarray(IV_LENGTH);
-  const key = crypto.scryptSync(options.password, SALT, KEY_LENGTH);
-  const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
-  return Buffer.concat([decipher.update(encryptedText), decipher.final()]);
+    const input = readFileSync(options.inputFilePath);
+    const iv = input.subarray(ZERO, IV_LENGTH);
+    const encryptedText = input.subarray(IV_LENGTH);
+    const key = crypto.scryptSync(options.password, SALT, KEY_LENGTH);
+    const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
+    return Buffer.concat([decipher.update(encryptedText), decipher.final()]);
 }
 
 /**
@@ -71,10 +71,10 @@ function decrypt(options: { inputFilePath: string, password: string }): Buffer {
  * ```
  */
 function decryptAndWrite(options: { inputFilePath: string, password: string }): void {
-  const outputFilePath = `${options.inputFilePath.replace('.env.enc', '_decrypted.env')}`;
-  const decrypted = decrypt(options);
-  writeFileSync(outputFilePath, decrypted);
-  console.log(`The content of the encrypted environment file "${options.inputFilePath}" has been decrypted to "${outputFilePath}".`);
+    const outputFilePath = `${options.inputFilePath.replace('.env.enc', '_decrypted.env')}`;
+    const decrypted = decrypt(options);
+    writeFileSync(outputFilePath, decrypted);
+    console.log(`The content of the encrypted environment file "${options.inputFilePath}" has been decrypted to "${outputFilePath}".`);
 }
 
 export {encryptAndWrite, decrypt, decryptAndWrite};

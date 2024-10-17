@@ -10,16 +10,20 @@ To upload variables only from .env file:
 await loadConfig();
 
 // Load configuration from a specified *.env file
-await loadConfig({ envConfigPath: 'path/to/local.env' });
+await loadConfig({envConfigPath: 'path/to/local.env'});
 
 // Load configuration from a default .env.enc encrypted file
-await loadConfig({ password: 'mySecretPassword' });
+await loadConfig({password: 'mySecretPassword'});
 
 // Load configuration from a specified *.env.enc encrypted file
-await loadConfig({ encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword' });
+await loadConfig({encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword'});
 
 // Load configuration from both *.env and *.env.enc files
-await loadConfig({ envConfigPath: 'path/to/local.env', encryptedConfigPath: 'path/to/local.env.enc', password: 'mySecretPassword' });
+await loadConfig({
+    envConfigPath: 'path/to/local.env',
+    encryptedConfigPath: 'path/to/local.env.enc',
+    password: 'mySecretPassword'
+});
 ```
 
 ## CLI tools
