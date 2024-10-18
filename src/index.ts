@@ -3,7 +3,7 @@ import process from "process";
 import dotenv from "dotenv";
 
 export type ConfigOptions = {
-  password?: string, envConfigPath?: string, encryptedConfigPath?: string
+    password?: string, envConfigPath?: string, encryptedConfigPath?: string
 }
 
 /**
@@ -18,23 +18,23 @@ export type ConfigOptions = {
  * @example
  * ```typescript
  * // Load configuration from the default .env file
- * await loadConfig();
+ * loadConfig();
  *
  * // Load configuration from a specified .env file
- * await loadConfig({ envConfigPath: 'path/to/.env' });
+ * loadConfig({ envConfigPath: 'path/to/.env' });
  *
  * // Load configuration from an encrypted file
- * await loadConfig({ encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword' });
+ * loadConfig({ encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword' });
  * ```
  */
 export function loadConfig(options?: ConfigOptions) {
-  if (!options) dotenv.config();
-  if (options?.envConfigPath) dotenv.config({path: options.envConfigPath});
-  if (options?.encryptedConfigPath) {
-    const decryptedBuffer = decrypt({
-      password: options?.password || process.env.QAVAJS_ENV_PASSWORD as string,
-      inputFilePath: options.encryptedConfigPath
-    });
-    Object.assign(process.env, dotenv.parse(decryptedBuffer));
-  }
+    if (!options) dotenv.config();
+    if (options?.envConfigPath) dotenv.config({path: options.envConfigPath});
+    if (options?.encryptedConfigPath) {
+        const decryptedBuffer = decrypt({
+            password: options?.password || process.env.QAVAJS_ENV_PASSWORD as string,
+            inputFilePath: options.encryptedConfigPath
+        });
+        Object.assign(process.env, dotenv.parse(decryptedBuffer));
+    }
 }

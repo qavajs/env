@@ -7,19 +7,23 @@ As early as possible in your application, import and call `qavajs-env/loadConfig
 To upload variables only from .env file:
 ```typescript
 // Load configuration from the default .env file
-await loadConfig();
+loadConfig();
 
 // Load configuration from a specified *.env file
-await loadConfig({ envConfigPath: 'path/to/local.env' });
+loadConfig({envConfigPath: 'path/to/local.env'});
 
 // Load configuration from a default .env.enc encrypted file
-await loadConfig({ password: 'mySecretPassword' });
+loadConfig({password: 'mySecretPassword'});
 
 // Load configuration from a specified *.env.enc encrypted file
-await loadConfig({ encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword' });
+loadConfig({encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword'});
 
 // Load configuration from both *.env and *.env.enc files
-await loadConfig({ envConfigPath: 'path/to/local.env', encryptedConfigPath: 'path/to/local.env.enc', password: 'mySecretPassword' });
+loadConfig({
+    envConfigPath: 'path/to/local.env',
+    encryptedConfigPath: 'path/to/local.env.enc',
+    password: 'mySecretPassword'
+});
 ```
 
 ## CLI tools
@@ -32,7 +36,7 @@ This command will generate .env.enc it the project root folder.
 
 To encrypt an env file with specific name run the next:
 ````shell
-qavajs-env encrypt 'mySecretPassword' -f 'pth/to/my/named.env'
+qavajs-env encrypt 'mySecretPassword' -f 'path/to/my/named.env'
 ````
 The file will be encrypted and saved into the directory.
 
@@ -43,5 +47,5 @@ qavajs-env encrypt 'mySecretPassword'
 
 To decrypt an `env.enc` file from a specific directory run the next command:
 ````shell
-qavajs-env encrypt 'mySecretPassword' -f pth/to/my/named.env.enc
+qavajs-env encrypt 'mySecretPassword' -f 'path/to/my/named.env.enc'
 ````
