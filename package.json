@@ -1,6 +1,6 @@
 {
   "name": "@qavajs/env",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Loads environment variables from a .env and encrypted .env.enc file into process.env",
   "scripts": {
     "build": "tsc",
@@ -14,7 +14,7 @@
     "Alexandr Legchilov"
   ],
   "bin": {
-    "qavajs-env": "lib/cli.js"
+    "qavajs-env": "bin/cli.js"
   },
   "license": "MIT",
   "engines": {
