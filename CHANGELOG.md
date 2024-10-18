@@ -13,7 +13,7 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 - :beetle: fixed cli reference
 
 ## 0.1.2
-- :beetle: fixed
+- :beetle: fixed publish workflow
 
 ## 0.1.1
 - :pencil: refactored unit tests
