@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 :x: - deprecation
 :pencil: - chore
 
+## 0.1.2
+- :beetle: fixed 
+
 ## 0.1.1
 - :pencil: refactored unit tests
 - :pencil: added changelog
