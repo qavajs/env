@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 :x: - deprecation
 :pencil: - chore
 
+## 0.1.4
+- :beetle: fixed cli import
+
 ## 0.1.3
 - :beetle: fixed cli reference
 
