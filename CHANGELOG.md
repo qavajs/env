@@ -9,13 +9,10 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 :x: - deprecation
 :pencil: - chore
 
-## [Unreleased]
+## 0.1.1
 - :pencil: refactored unit tests
 - :pencil: added changelog
 
-## 0.1.1
-- :rocket: added initial implementation
-- 
 ## 0.1.0
 - :rocket: added initial implementation
 
