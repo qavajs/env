@@ -27,7 +27,7 @@ export type ConfigOptions = {
  * loadConfig({ encryptedConfigPath: 'path/to/config.env.enc', password: 'mySecretPassword' });
  * ```
  */
-export function loadConfig(options?: ConfigOptions) {
+export default function loadConfig(options?: ConfigOptions) {
     if (!options) dotenv.config();
     if (options?.envConfigPath) dotenv.config({path: options.envConfigPath});
     if (options?.encryptedConfigPath) {

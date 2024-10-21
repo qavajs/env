@@ -9,6 +9,9 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 :x: - deprecation
 :pencil: - chore
 
+## 1.0.0
+- :pencil: update documentation
+
 ## 0.1.4
 - :beetle: fixed cli import
 
@@ -24,4 +27,3 @@ Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how 
 
 ## 0.1.0
 - :rocket: added initial implementation
-

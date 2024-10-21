@@ -1,5 +1,6 @@
 import crypto from 'crypto';
 import {writeFileSync, readFileSync} from "node:fs";
+import chalk from "chalk";
 
 const ALGORITHM = 'aes256';
 const SALT = 'salt';
@@ -7,6 +8,8 @@ const ENC_EXTENSION = '.enc';
 const ZERO = 0;
 const IV_LENGTH = 16;
 const KEY_LENGTH = 32;
+const CHECKMARK = ' ✅️';
+const success = chalk.black.bgGreenBright.bold;
 
 /**
  * Encrypts the contents of a specified input file and writes the encrypted data to a new file.
@@ -29,8 +32,8 @@ function encryptAndWrite(options: { inputFilePath?: string, password: string }):
     const input = readFileSync(inputFilePath);
     const encrypted = Buffer.concat([cipher.update(input), cipher.final()]);
     writeFileSync(outputFilePath, Buffer.concat([iv, encrypted]));
-    console.log(`The Environment file "${inputFilePath}" has been encrypted to "${outputFilePath}".`);
-    console.log(`Make sure to delete "${inputFilePath}" file for production use.`);
+    console.log(CHECKMARK, success(`The Environment file "${inputFilePath}" has been encrypted to "${outputFilePath}".`));
+    console.log(success(`Make sure to delete "${inputFilePath}" file for production use.`));
 }
 
 /**
@@ -71,10 +74,10 @@ function decrypt(options: { inputFilePath: string, password: string }): Buffer {
  * ```
  */
 function decryptAndWrite(options: { inputFilePath: string, password: string }): void {
-    const outputFilePath = `${options.inputFilePath.replace('.env.enc', '_decrypted.env')}`;
+    const outputFilePath = options.inputFilePath.replace('.env.enc', '_decrypted.env').replace(/^_/, '');
     const decrypted = decrypt(options);
     writeFileSync(outputFilePath, decrypted);
-    console.log(`The content of the encrypted environment file "${options.inputFilePath}" has been decrypted to "${outputFilePath}".`);
+    console.log(CHECKMARK, success(`The content of the encrypted environment file "${options.inputFilePath}" has been decrypted to "${outputFilePath}".`));
 }
 
 export {encryptAndWrite, decrypt, decryptAndWrite};
