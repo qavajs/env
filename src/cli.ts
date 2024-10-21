@@ -4,8 +4,8 @@ import {Command} from 'commander';
 const program = new Command();
 
 program
-    .name('crypt-env')
-    .description('CLI tool to encrypt and decrypt environment variables files')
+    .name('qavajs-env')
+    .description('CLI tool to encrypt and decrypt .env files')
     .version('0.1.0');
 
 program.command('encrypt')

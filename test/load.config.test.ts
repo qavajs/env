@@ -1,5 +1,5 @@
-import {describe, test, expect, vi, afterEach} from 'vitest';
-import {loadConfig} from "../src";
+import {describe, test, expect, vi} from 'vitest';
+import loadConfig from "../src";
 import CONSTANTS from "./constants";
 
 const {PASSWORD, VALUE} = CONSTANTS;
